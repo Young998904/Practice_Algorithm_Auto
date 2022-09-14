@@ -21,16 +21,9 @@ public class Main {
         
         int result = 0;
 
-        for (int i=0; i<N-2; i++) {
-            for (int k=1; k<N-1; k++) {
-                if (i > k) {continue;}
-                for (int j=2; j<N; j++) {
-                    if (i > j || k > j) {
-                        continue;
-                    }
-                    if (i==k || k==j || i==j) {
-                        continue;
-                    }
+        for (int i=0; i < N-2; i++) {
+            for (int k=i+1; k < N-1; k++) {
+                for (int j=k+1; j < N; j++) {
                     int total = numList.get(i) + numList.get(k) + numList.get(j);
 
                     if (total == M) {
