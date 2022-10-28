@@ -7,7 +7,8 @@ class Solution {
         // else {
         //     answer = "Odd";
         // }
-        answer = num % 2 == 0 ? "Even" : "Odd";
-        return answer;
+        // answer = num % 2 == 0 ? "Even" : "Odd";
+        return num % 2 == 0 ? "Even" : "Odd";
+        // return answer;
     }
 }
