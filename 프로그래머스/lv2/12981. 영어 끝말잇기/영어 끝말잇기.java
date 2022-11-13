@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.Arrays;
 class Solution {
     public int[] solution(int n, String[] words) {
         int[] answer = {0, 0};
@@ -7,9 +8,7 @@ class Solution {
         Stack<String> stack = new Stack<>();
         // 차례
         int[] times = new int[n+1];
-        for (int i=1; i<n+1; i++) {
-            times[i] = 1;
-        }
+        Arrays.fill(times, 1);
         // 첫번째 단어는 무조건 통과
         stack.push(words[0]); // 첫번째
         times[1] ++;
