@@ -99,11 +99,19 @@ class Solution {
         for (String[] clothe : clothes) {
             String type = clothe[1];
             
-            // map 에 삽입
-            int count = 0;
-            if (map.containsKey(type)) {
-                count = map.get(type);
-            }
+//             // map 에 삽입 : 방법 (1)
+//             int count = 0;
+//             if (map.containsKey(type)) {
+//                 count = map.get(type);
+//             }
+//             map.put(type, ++count);
+            
+//             for (String[] clothe : clothes) {
+//             String type = clothe[1];
+
+            // map 에 삽입 : 방법 (2)
+            int count = map.getOrDefault(type, 0);
+
             map.put(type, ++count);
         }
         
@@ -116,7 +124,7 @@ class Solution {
             counts[i] = map.get(types[i]);
         }
         
-        // 경우의 수 확인
+        // 경우의 수 확인 (2)
         for (int n : counts) {
             answer *= n+1;
         }
