@@ -80,7 +80,6 @@ ex) 0 ➡️ 0(3) / 5 ➡️ 12(3) ...
 (다시 생각)
 
 */
-import java.util.ArrayList;
 import java.util.List;
 
 class Solution {
@@ -106,9 +105,7 @@ class Solution {
         if (n != 0) {
             sb.insert(0, n);
         }
-        
-        answer = sb.toString();
 
-        return answer;
+        return sb.toString();
     }
 }
