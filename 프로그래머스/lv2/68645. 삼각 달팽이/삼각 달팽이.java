@@ -44,6 +44,7 @@ class Solution {
         int idx = 0;
          int[] answer = new int[tmp-1];
         
+        // answer 배열에 순서대로 
         for (int m=0; m<n; m++) {
             for (int u=0; u<m+1; u++) {
                 answer[idx++] = tri[m][u];
