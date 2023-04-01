@@ -10,24 +10,45 @@ class Solution {
         }
         
         // Floyd-Washall Algorithm 적용
-        // 방법 ①
-        for(int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                if (result[i][j] == 1) {
-                    for (int k=0; k<n; k++) {
-                        if(result[j][k] == 1) {
-                            result[i][k] = 1;
-                        }
+//         // 방법 ①
+//         for(int i=0; i<n; i++) {
+//             for (int j=0; j<n; j++) {
+//                 if (result[i][j] == 1) {
+//                     for (int k=0; k<n; k++) {
+//                         if(result[j][k] == 1) {
+//                             result[i][k] = 1;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         // 방법 ② : 방법 ① 과 논리적으로는 같지만 좀 더 Floyd-Washall 다움
+//         for(int i=0; i<n; i++) {
+//             for (int j=0; j<n; j++) {
+//                 if (i==j || result[i][j] == 1) continue;
+//                 for (int k=0; k<n; k++) {
+//                     if (result[i][k] == 1 && result[k][j] == 1) result[i][j] = 1;
+//                 }
+//             }
+//         }
+        
+//         // for (int i=0; i<n; i++) {
+//         //     for (int j=0; j<n; j++) {
+//         //         for (int k=0; k<n; k++) {
+//         //             if (result[i][k] == 1 && result[k][j] ==1) {
+//         //                 result[i][j] =1;
+//         //             }
+//         //         }
+//         //     }
+//         // }
+        // 중간 노드를 반복문의 처음에 배치
+        for (int k=0; k<n; k++) {
+            for (int i=0; i<n; i++) {
+                for (int j=0; j<n; j++) {
+                    if (i == j) continue;
+                    if (result[i][k] == 1 && result[k][j] == 1) {
+                        result[i][j] = 1;
                     }
-                }
-            }
-        }
-        // 방법 ② : 방법 ① 과 논리적으로는 같지만 좀 더 Floyd-Washall 다움
-        for(int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                if (i==j || result[i][j] == 1) continue;
-                for (int k=0; k<n; k++) {
-                    if (result[i][k] == 1 && result[k][j] == 1) result[i][j] = 1;
                 }
             }
         }
