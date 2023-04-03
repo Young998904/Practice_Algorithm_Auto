@@ -10,6 +10,7 @@ class Solution {
         }
         
         // Floyd-Washall Algorithm 적용
+/*
 //         // 방법 ①
 //         for(int i=0; i<n; i++) {
 //             for (int j=0; j<n; j++) {
@@ -41,6 +42,7 @@ class Solution {
 //         //         }
 //         //     }
 //         // }
+*/
         // 중간 노드를 반복문의 처음에 배치
         for (int k=0; k<n; k++) {
             for (int i=0; i<n; i++) {
