@@ -150,7 +150,8 @@ class Node implements Comparable<Node> {
     
     @Override
     public int compareTo(Node o) {
-        return Integer.compare(this.cost, o.cost);
+        return Integer.compare(this.cost, o.cost); 
+        // 다른 표현 방법이 있는지 공부! (람다식에서 자주 활용됨!)
     }
 }
 class Solution {
@@ -178,13 +179,13 @@ class Solution {
             graph[r[1]].add(new Node(r[0], r[2]));
         }
         
-        // cf) 과정 1 확인
-        for(int i=1; i<=N; i++) {
-            for (int j=0; j<graph[i].size(); j++) {
-                // System.out.printf("%d ", graph[i].get(j).index);
-            }
-            // System.out.println();
-        }
+        // // cf) 과정 1 확인
+        // for(int i=1; i<=N; i++) {
+        //     for (int j=0; j<graph[i].size(); j++) {
+        //         System.out.printf("%d ", graph[i].get(j).index);
+        //     }
+        //     System.out.println();
+        // }
         
         // 2. 다익스트라 수행
         // (1) 시작 전 초기화
@@ -198,6 +199,7 @@ class Solution {
             if (visited[nowVertex]) continue;
             visited[nowVertex] = true;
             
+            // 인접 노드 탐색 & 값 생신
             for (Node next : graph[nowVertex]) {
                 if (dist[next.index] > dist[nowVertex] + next.cost) {
                     dist[next.index] = dist[nowVertex] + next.cost;
