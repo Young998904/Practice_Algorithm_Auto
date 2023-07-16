@@ -206,7 +206,7 @@ class Node implements Comparable<Node> {
     
     @Override
     public int compareTo(Node o) {
-        return Integer.compare(o.cost, this.cost);
+        return Integer.compare(o.cost, this.cost); // 내림차순
     }
 }
 class Solution {
@@ -231,29 +231,35 @@ class Solution {
             graph[cost[1]][cost[0]] = true;
         }
         
-        // // 우선순위 큐 입력확인
-        // for (Node node : pq) {
-        //     System.out.println(node.cost);
-        // }
-                
-        while (!pq.isEmpty()) {
-            Node node = pq.poll();
+        // 우선순위 큐 입력확인 : 내림차순 형태
+        for (Node node : pq) {
+            System.out.println(node.cost);
+        }
             
+        // (2) Greedy 적용하면서 전체 탐색
+        while (!pq.isEmpty()) {
+            Node node = pq.poll(); // 가장 비용이 큰 노드 [2,3,8]
+            
+            // 연결 끊기
             graph[node.start][node.end] = false;
             graph[node.end][node.start] = false;
             
+            // 연결 가능 탐색
             visited[0] = true;
             
             System.out.printf("%d 빼고 연결 가능 여부 : ", node.cost);
-            if (isLinked(0, n)) {
+            
+            if (isLinked(0, n)) { // 경우 1 : 연결 가능하면 없어도 가능하므로 answer 에 값 추가 안함
                 reset(n);
                 System.out.println("가능");
                 continue;
             }
             
+            // 경우2 : 연결 불가능하면 필요한 값이므로 answer 에 값 추가
             reset(n);
             System.out.println("불가능");
             
+            // 연결 원상복구
             graph[node.start][node.end] = true;
             graph[node.end][node.start] = true;
 
@@ -263,6 +269,7 @@ class Solution {
         return answer;
     }
     
+    // 연결 탐색 : DFS
     public static boolean isLinked(int start, int n) {
         if (done) return true;
         
@@ -281,6 +288,7 @@ class Solution {
         return false;
     }
     
+    // 연결 탐색 후 초기화
     public static void reset(int n) {
         cnt = 1;
         done = false;
