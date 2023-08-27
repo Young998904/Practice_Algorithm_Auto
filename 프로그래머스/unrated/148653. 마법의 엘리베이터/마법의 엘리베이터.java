@@ -57,13 +57,13 @@ class Solution {
     public static void binary(int value, int size, int cnt) {
         System.out.printf("%d , %d, %d \n", value, size, cnt);
 
-        if (cnt > answer) return;
+        if (cnt > answer) return; // 속도
         
         if (size == n) { // 마지막 자리수
             int last = (int) (value / Math.pow(10, Integer.toString(value).length()-1));
             
             int result = Math.min(cnt + last, cnt+(10-last) +1);
-            answer = Math.min(answer, result);
+            answer = Math.min(answer, result); // min 값 갱신
             return;
         }
         
@@ -75,11 +75,12 @@ class Solution {
             binary(value, size+1, cnt);
         }
         else {
-            int addNumA = num * (int) Math.pow(10, size-1);
-            int addNumB = (int) Math.pow(10, size) - addNumA;
+            int addNumA = num * (int) Math.pow(10, size-1); // 내려가는 경우
+            
+            int addNumB = (int) Math.pow(10, size) - addNumA; // 올라가는 경우
             // 이분할
-            binary(value-addNumA, size+1, cnt+num);
-            binary(value+addNumB, size+1, cnt+10-num);
+            binary(value-addNumA, size+1, cnt+num); // 내려
+            binary(value+addNumB, size+1, cnt+10-num); // 올라
         }
         
         return;
