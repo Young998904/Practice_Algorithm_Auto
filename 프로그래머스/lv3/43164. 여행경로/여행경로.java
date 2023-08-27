@@ -197,7 +197,7 @@ class Contry implements Comparable<Contry> {
     
     @Override
     public int compareTo(Contry other) {
-        return this.end.compareToIgnoreCase(other.end);
+        return this.end.compareTo(other.end);
     }
 }
 
