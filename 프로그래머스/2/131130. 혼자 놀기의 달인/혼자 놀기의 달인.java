@@ -17,7 +17,7 @@ class Solution {
             boxCnt++;
             next = cards[i];
             
-            while (!opened[next-1]) {
+            while (!opened[next-1]) { // 사이클이 종료될 때 까지
                 opened[next-1] = true;
                 boxCnt++;
                 next = cards[next-1];
