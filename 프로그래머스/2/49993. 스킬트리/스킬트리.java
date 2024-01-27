@@ -10,7 +10,7 @@ class Solution {
         int position = 0;
         int limit = -1;
         boolean isPossible = true;
-        boolean isActivated = false;
+        boolean isActivated = false; // -1
         
         for (String str : skill_trees) {
             for (int i=0; i<skill.length(); i++) {
