@@ -1,4 +1,4 @@
-// 방법 (1) 단순 반복문 : 정확성 (통과) / 효율성 (실패) / O(n2)
+// // 방법 (1) 단순 반복문 : 정확성 (통과) / 효율성 (실패) / O(n2)
 
 // import java.util.ArrayList;
 
@@ -70,17 +70,17 @@ class Solution {
         // (1)
         int time = 0;
         
-        for (int i=0; i<prices.length; i++) {
+        for (int i=0; i<prices.length; i++) { // prices 배열에 있는 것을 하나씩 넣는 과정
             Price p = new Price(i, prices[i]);
             
-            if (stack.isEmpty()) {
+            if (stack.isEmpty()) { // 스택이 비어있으면 바로 넣기
                 stack.push(p);
                 time++;
                 // System.out.printf("%d번 : %d / 스택에 추가 (time : %d)\n", p.idx, p.price, time);
                 continue;
             }
             
-            if (stack.peek().price > p.price) {
+            if (stack.peek().price > p.price) { // 스택이 차있으면 맨위부터 비교
                 while(!stack.isEmpty() && stack.peek().price > p.price) {
                     Price _p = stack.pop();
                     answer[_p.idx] = time - _p.idx;
@@ -95,7 +95,7 @@ class Solution {
         
         // (2)
         time--;
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty()) { // 남은 스택안 원소를 털어내는 과정
             Price _p = stack.pop();
             answer[_p.idx] = time - _p.idx;
             // System.out.printf("%d번 : %d / 정답에 넣음 (time : %d)\n", _p.idx, _p.price, time);
