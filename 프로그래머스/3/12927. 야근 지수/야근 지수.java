@@ -200,7 +200,7 @@ class Solution {
     public long solution(int n, int[] works) {
         long answer = 0;
         
-        // (1) 우선순위큐 생성 및 저장
+        // (1) 우선순위큐 생성 및 저장 : O(n)
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         
         for (int work : works) pq.add(work);
@@ -208,45 +208,29 @@ class Solution {
         int tmp = 0;
         int next = 0;
         
+        // (2) n 이 0 이 될 때 까지 반복문 실행 : O(n)
         while (n != 0) {
             tmp = pq.remove(); // 가장 큰 작업량
-            next = pq.peek(); // 그 다음 작업량
-            
-            // System.out.printf("tmp : %d\n", tmp);
-            // System.out.printf("next : %d\n", next);
-            
-            // // case1. tmp > next
-            // if (tmp > next) {
-            //     // case1-1. tmp 와 next 차이 <= n
-            //     if (tmp-next+1 <= n) {
-            //         pq.add(next-1); // 하나 작게 해서 삽입
-            //         n -= tmp-next+1;
-            //     }
-            //     else {
-            //         pq.add(tmp - n);
-            //         n = 0;
-            //     }
-            // }
-            
-            
+            next = pq.peek(); // 그 다음 작업량            
             
             if (tmp-next+1 <= n) {
                     pq.add(next-1); // 하나 작게 해서 삽입
                     n -= tmp-next+1;
                 }
-                else {
+                else { // n 이 부족할 경우
                     pq.add(tmp - n);
                     n = 0;
                 }
 
         }
         
+        // (3) 제곱합 연산 : O(n)
         for (int work : pq) {
             if (work < 0) continue;
             answer += work * work;
         }
         
-        return answer;
+        return answer; // 3 * O(n) => O(n)
     }
 }
 /*
