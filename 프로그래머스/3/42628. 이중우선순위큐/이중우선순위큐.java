@@ -1,9 +1,15 @@
+/*
+1. 레드-블랙 트리 => TreeSet => 앞 뒤로 / 정렬 -> Set (중복값X)
+2. Dequeue => 앞 뒤로 / 중복값 -> 정렬X
+3. PriorityQueue 2개 => Heap 자료구조 (이진 트리 -> 배열)
+*/
+
 import java.util.PriorityQueue;
 import java.util.Collections;
 
 class Solution {
     public int[] solution(String[] operations) {
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // 오름 차순
         
         for (String oper : operations) {
             String[] op = oper.split(" ");
@@ -18,23 +24,24 @@ class Solution {
                     minHeap.poll();
                 }
                 else { // (2)-2 최댓값 삭제
+                    // 내림차순
                     PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
                     maxHeap.addAll(minHeap);
                     int max = maxHeap.poll();
                     
-                    minHeap.remove(max);
+                    minHeap.remove(max); // 동기화
                 }
             }
         }
         
-        if(minHeap.isEmpty()) {
+        if(minHeap.isEmpty()) { // 비어있는 경우
             return new int[] {0,0};
         }
-        else if (minHeap.size() == 1) {
+        else if (minHeap.size() == 1) { // 사이즈 1
             int num = minHeap.poll();
             return new int[] {num, num};
         }
-        else {
+        else { // 나머지 경우
             int min = minHeap.poll();
             PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
             maxHeap.addAll(minHeap);
